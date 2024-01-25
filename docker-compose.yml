@@ -1,0 +1,22 @@
+version: '3'
+services:
+  backend:
+    image: nodewithmongoandredis
+    build: ./demo
+    depends_on:
+     - mongo
+     - redis
+    ports:
+     - "8080:8080"  # <-- Fix the spacing and use a colon (:) here
+    volumes:  
+     - ./demo:/demo
+  mongo:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"  # <-- Fix the spacing and use a colon (:) here
+    volumes:
+     - ./mongo_data:/data/db
+  redis:
+    image: redis:6.2
+    ports:
+      - "6379:6379"  # <-- Fix the spacing and use a colon (:) here
